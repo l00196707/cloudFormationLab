@@ -126,3 +126,9 @@ Resources:
             Action:
               - 'sts:AssumeRole'
       Path: '/'
+
+Outputs:
+  ApiRootUrl:
+    Description: Invoke Url of the API
+    Value: !Sub 'https://${SimpleRestAPI}.execute-api.${AWS::Region}.amazonaws.com/${EnvironmentName}/ip'
+    
