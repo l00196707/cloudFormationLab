@@ -2,6 +2,17 @@ AWSTemplateFormatVersion: '2010-09-09'
 
 Description: REST API using AWS API Gateway with a Lambda Integration
 
+Parameters:
+    EnvironmentName:
+      Type: String
+      Default: dev
+      Description: Environment name (eg dev, testing, production)
+
+    FunctionName:
+      Type: String
+      Default: get-ip
+      Description: Base name of the lambda function
+
 Resources:
 
   SimpleRestAPI:
