@@ -104,9 +104,16 @@ Resources:
       FunctionName: !Sub "${FunctionName}-${EnvironmentName}"
       Handler: index.lambda_handler
       MemorySize: 256
-      Role: !Ref LambdaExecutionRole
+      Role: !GetAtt LambdaExecutionRole.Arn
       Runtime: python3.9
       Timeout: 60
+  
+  LambdaInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref LambdaFunction
+      Principal: apigateway.amazonaws.com
 
 Outputs:
   ApiRootUrl:
