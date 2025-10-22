@@ -104,11 +104,10 @@ Resources:
       FunctionName: !Sub "${FunctionName}-${EnvironmentName}"
       Handler: index.lambda_handler
       MemorySize: 256
-      Role: !GetAtt LambdaExecutionRole
+      Role: !Ref LambdaExecutionRole
       Runtime: python3.9
       Timeout: 60
 
-  
 Outputs:
   ApiRootUrl:
     Description: Invoke Url of the API
