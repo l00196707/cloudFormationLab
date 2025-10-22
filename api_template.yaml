@@ -91,7 +91,12 @@ Resources:
           logger.setLevel(logging.INFO)
 
           def lambda_handler(event, context):
-              ip_address = event['requestContext']['identity']['sourceIp']
+              ip_address = (
+                event.get('requestContext',{})
+                .get('identity',{})
+                .get('sourceIp','unknown')   
+              )
+              logger.info(f"Request from IP: {ip_address}")
               return {
                   'body': json.dumps({"ip_address": ip_address}),
                   'headers': {
